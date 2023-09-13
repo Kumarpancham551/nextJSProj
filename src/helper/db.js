@@ -5,16 +5,8 @@ export const connectDb = async ()=>{
         dbName:'work_manager'
     })
     console.log("db connection");
-//    const uuser = new User({
-//         name:"test name",
-//         email:"test@gmail.com",
-//         password:"testpassword",
-//         about:"this is testing"
-//     })
-//     await uuser.save();
-  //  console.log("connection with host ",connection.host)
  }catch(error){
-console.log("Fail to connecvt with database ");
+console.log("Fail to connect with database ");
 console.log(error)
  }
 }

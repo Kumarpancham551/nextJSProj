@@ -3,25 +3,16 @@ import { User } from "@/models/user";
 import { NextResponse } from "next/server"
 
 connectDb();
-export function GET(request) {
-    const users = [
-        {
-            name: "pancham",
-            phone: "24252",
-            course: "JAVA"
-        },
-        {
-            name: "pranav",
-            phone: "24252",
-            course: "node"
-        },
-        {
-            name: "divyang",
-            phone: "24252",
-            course: "react"
-        }
-    ]
+export async function GET(request) {
+   try{
+    const users = await User.find()
     return NextResponse.json(users);
+   }catch(error){
+    return NextResponse.json({
+        message: "Fail to get user"
+    })
+   }
+
 }
 export async function POST(request) {
     try {
@@ -51,3 +42,5 @@ export function DELETE(request) {
 export function PUT() {
 
 }
+
+   
