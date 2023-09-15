@@ -17,7 +17,7 @@ const CustomNavbar = () => {
             </li>
 
             <li>
-                <a href='#!'>Add Task</a>
+                <Link href={'/add-task'}>Add Task</Link>
             </li>
 
             <li>
