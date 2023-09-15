@@ -1,4 +1,6 @@
+
 export default function Info(){
+
     return (
         <div>
             <h1>This is info componenet</h1>
