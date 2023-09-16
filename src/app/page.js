@@ -1,6 +1,6 @@
 import Image from 'next/image'
 export const metadata = {
-  title: "Home :Work Manger",
+  title: "Home : Work Manger",
 }
 export default function Home() {
   return (
@@ -9,3 +9,5 @@ export default function Home() {
    </div> 
   );
 }
+
+// 6:15
