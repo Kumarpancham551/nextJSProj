@@ -1,20 +1,37 @@
 "use client"
+import { login } from '@/services/userService'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
 const Login = () => {
 
+    const router = useRouter();
    const [data,setData]= useState({
         email:"",
         password:""
     })
 
-    const loginFormSubmitted=(event)=>{
+    const loginFormSubmitted= async(event)=>{
         event.preventDefault();
         if (data.email.trim() === "" || data.email == null) {
             toast.warning("Invalid credential !!", {
               position: "top-center"
             })
+            return;
+          }
+          try{
+           const result = await login(data)
+           console.log(result);
+           toast.success("Logge in !!", {
+            position: "top-center"
+          })
+          router.push("/profile/user") // This route is used inside functional componenet
+          }catch(error){
+            console.log(error)
+            toast.error(error.response.data.message, {
+                position: "top-center"
+              })
           }
     }
     return (
