@@ -1,12 +1,14 @@
 "use client"
+import UserContext from '@/context/userContext'
 import { login } from '@/services/userService'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 
 const Login = () => {
 
     const router = useRouter();
+    const context = useContext(UserContext)
    const [data,setData]= useState({
         email:"",
         password:""
@@ -26,6 +28,7 @@ const Login = () => {
            toast.success("Logge in !!", {
             position: "top-center"
           })
+            context.setUser(result.user)
           router.push("/profile/user") // This route is used inside functional componenet
           }catch(error){
             console.log(error)
