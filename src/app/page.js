@@ -1,3 +1,4 @@
+import BannerSection from '@/components/homepage/HomeBanner';
 import Image from 'next/image'
 export const metadata = {
   title: "Home : Work Manger",
@@ -5,9 +6,8 @@ export const metadata = {
 export default function Home() {
   return (
    <div>
-    <h1 className='text-5xl'>Welcome to work manager</h1>    
+      <BannerSection />
    </div> 
   );
 }
 
-// 6:42

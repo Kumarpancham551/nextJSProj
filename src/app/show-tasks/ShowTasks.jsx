@@ -1,8 +1,9 @@
 "use client"
 import UserContext from '@/context/userContext'
-import { getTaskOfUser } from '@/services/taskService'
+import { deleteTask, getTaskOfUser } from '@/services/taskService'
 import React, { useContext, useEffect, useState } from 'react'
 import Task from './Task'
+import { toast } from 'react-toastify'
 
 const ShowTasks = () => {
   const [tasks, setTasks] = useState([])
@@ -26,6 +27,19 @@ const ShowTasks = () => {
       loadTasks(context.user._id);
     }
   }, [context.user])
+
+  async function deleteTaskParent(taskId){
+    try{
+      const result = await deleteTask(taskId);
+     const netTasks = tasks.filter(item=>item._id !=taskId)
+     setTasks(netTasks)
+      console.log(result)
+      toast.success("Your task is deleted")
+    } catch(error){
+      console.log(error)
+      toast.error("Error in deleteing task")
+    }
+  }
   return (
     <div className='grid grid-cols-12 mt-3'>
       <div className='col-span-6 col-start-4'>
@@ -33,7 +47,8 @@ const ShowTasks = () => {
 
           {
             tasks.map((task)=>(
-              <Task task={task} key={task._id}/>
+              <Task task={task} key={task._id} 
+              deleteTaskParent={deleteTaskParent}/>
             ))
           }
       </div>
